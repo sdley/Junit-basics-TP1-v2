@@ -49,4 +49,29 @@ public class CalculatorTest {
         assertThrows(IllegalArgumentException.class, () -> calculator.divide(10, 0),
                 "La division par zero devrait etre levee avec l'exception IllegalArgumentException");
     }
+
+    @Test
+    @DisplayName("Test modulo")
+    public void testModulo() {
+        assertEquals(1, calculator.modulo(5, 2),
+                "Le reste de la division de 5 par 2 devrait etre 1");
+    }
+
+    @Test
+    @DisplayName("Test modulo par zero")
+    public void testModuloByZero() {
+        try {
+            calculator.modulo(10, 0);
+        } catch (IllegalArgumentException e){
+            assertEquals("Division par zero non permise", e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Test modulo assertThrows")
+    public void testModuloAssertThrows() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.modulo(10, 0),
+                "La division par zero devrait etre levee avec l'exception IllegalArgumentException");
+    }
+
 }

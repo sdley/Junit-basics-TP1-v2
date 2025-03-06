@@ -19,4 +19,12 @@ public class Calculator {
         }
         return (double) a / b;
     }
+
+    // modulo method
+    public int modulo(int a, int b){
+        if (b == 0) {
+            throw new IllegalArgumentException("Division par zero non permise");
+        }
+        return a % b;
+    }
 }
