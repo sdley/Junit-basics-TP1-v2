@@ -74,4 +74,13 @@ public class CalculatorTest {
                 "La division par zero devrait etre levee avec l'exception IllegalArgumentException");
     }
 
+    @Test
+    @DisplayName("Plusieurs Tests")
+    public void testMultipleStatements() {
+        assertEquals(3, calculator.add(1, 2));
+        assertEquals(1, calculator.add(-1, 2));
+        assertEquals(10, calculator.add(calculator.add(2, 3),
+                calculator.add(3, 2)));
+    }
+
 }
