@@ -3,8 +3,7 @@ package sn.sdley;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
     private final Calculator calculator = new Calculator();
@@ -81,6 +80,23 @@ public class CalculatorTest {
         assertEquals(1, calculator.add(-1, 2));
         assertEquals(10, calculator.add(calculator.add(2, 3),
                 calculator.add(3, 2)));
+    }
+
+    @Test
+    @DisplayName("Depassement de capacite")
+    public void testDepassementCapacite() {
+        try {
+            calculator.add(Integer.MAX_VALUE, 1);
+        } catch (ArithmeticException e) {
+            assertEquals("Depassement de capacite : l'addition depasse Integer.MAX_VALUE",
+                    e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("Pas de depassement de capacite")
+    public void testPasDepassementCapacite() {
+        assertTrue(calculator.add(1234567, 1234567) < Integer.MAX_VALUE);
     }
 
 }

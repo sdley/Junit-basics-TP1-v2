@@ -2,6 +2,9 @@ package sn.sdley;
 
 public class Calculator {
     public int add(int a, int b) {
+        if (a > Integer.MAX_VALUE -b || b > Integer.MAX_VALUE - a) {
+            throw new ArithmeticException("Depassement de capacite : l'addition depasse Integer.MAX_VALUE");
+        }
         return a + b;
     }
 
