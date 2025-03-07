@@ -1,12 +1,24 @@
 package sn.sdley;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorTest {
-    private final Calculator calculator = new Calculator();
+    Calculator calculator;
+
+    @BeforeEach
+    public void setUp() {
+        calculator = new Calculator();
+    }
+
+    @AfterEach
+    public void tearDown(){
+        calculator = null;
+    }
 
     @Test
     @DisplayName("Test addition")
@@ -77,7 +89,9 @@ public class CalculatorTest {
     @DisplayName("Plusieurs Tests")
     public void testMultipleStatements() {
         assertEquals(3, calculator.add(1, 2));
-        assertEquals(1, calculator.add(-1, 2));
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.add(-1, 2),
+                "L'addition de nombre negatifs devrait lever une exception IllegalArgumentException");
         assertEquals(10, calculator.add(calculator.add(2, 3),
                 calculator.add(3, 2)));
     }
@@ -98,5 +112,9 @@ public class CalculatorTest {
     public void testPasDepassementCapacite() {
         assertTrue(calculator.add(1234567, 1234567) < Integer.MAX_VALUE);
     }
+
+    // value of Integer.MAX_VALUE is 2147483647
+
+
 
 }
